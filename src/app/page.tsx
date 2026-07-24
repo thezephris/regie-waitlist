@@ -6,7 +6,7 @@ import { Star, Mic, ShieldAlert, LayoutDashboard, Loader2, X, Check, ArrowRight,
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { AnimatePresence, motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useTheme } from "next-themes";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 function Counter({ from, to }: { from: number; to: number }) {
@@ -30,7 +30,7 @@ export default function Home() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "already_registered">("idle");
   const [error, setError] = useState<string | null>(null);
   const [waitlistCount, setWaitlistCount] = useState(1532);
 
@@ -57,16 +57,22 @@ export default function Home() {
     setStatus("loading");
     
     try {
-      await addDoc(collection(db, "emails"), {
-        email,
+      const docId = email.trim().toLowerCase();
+      await setDoc(doc(db, "emails", docId), {
+        email: docId,
         createdAt: serverTimestamp()
       });
       setStatus("success");
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error saving email:", err);
-      setError("Sunucu hatası: Firestore kurallarını veya bağlantını kontrol et.");
-      setTimeout(() => setError(null), 3500);
-      setStatus("idle");
+      // Firebase, kuralımızda "sadece oluştur (create)" dediğimiz için zaten var olan docId (e-posta) üzerine yazmaya çalışırken permission-denied verecektir.
+      if (err.code === "permission-denied") {
+        setStatus("already_registered");
+      } else {
+        setError("Sunucu hatası: Firestore kurallarını veya bağlantını kontrol et.");
+        setTimeout(() => setError(null), 3500);
+        setStatus("idle");
+      }
     }
   };
 
@@ -322,9 +328,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Success Modal */}
+        {/* Success & Already Registered Modals */}
         <AnimatePresence>
-          {status === "success" && (
+          {(status === "success" || status === "already_registered") && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -345,18 +351,25 @@ export default function Home() {
                   <X className="w-4 h-4" />
                 </button>
 
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-6 sm:mb-8 relative">
-                  <div className="absolute inset-0 rounded-full bg-green-200/50 dark:bg-green-800/20 scale-125 -z-10" />
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#16a34a] flex items-center justify-center text-white shadow-lg shadow-green-500/30">
-                    <Check className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
+                <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center mb-6 sm:mb-8 relative ${status === "success" ? "bg-green-100 dark:bg-green-900/30" : "bg-orange-100 dark:bg-orange-900/30"}`}>
+                  <div className={`absolute inset-0 rounded-full scale-125 -z-10 ${status === "success" ? "bg-green-200/50 dark:bg-green-800/20" : "bg-orange-200/50 dark:bg-orange-800/20"}`} />
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white shadow-lg ${status === "success" ? "bg-[#16a34a] shadow-green-500/30" : "bg-orange-500 shadow-orange-500/30"}`}>
+                    {status === "success" ? <Check className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" /> : <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />}
                   </div>
                 </div>
 
                 <h2 className="font-bold text-foreground mb-3 sm:mb-4" style={{ fontSize: 'clamp(1.5rem, 3.5vh, 2.25rem)', lineHeight: '1.2' }}>
-                  You have been <br /> added to our <span className="text-[#16a34a]">waitlist!</span>
+                  {status === "success" ? (
+                    <>You have been <br /> added to our <span className="text-[#16a34a]">waitlist!</span></>
+                  ) : (
+                    <>You are already <br /> on the <span className="text-orange-500">waitlist!</span></>
+                  )}
                 </h2>
+                
                 <p className="text-muted-foreground mb-8 sm:mb-10 max-w-[280px] leading-relaxed" style={{ fontSize: 'clamp(0.85rem, 2vh, 1rem)' }}>
-                  Thank you for joining, you&apos;ll be the first to know when we are ready!
+                  {status === "success" ? 
+                    "Thank you for joining, you'll be the first to know when we are ready!" : 
+                    "We already have this email in our system. We will notify you soon!"}
                 </p>
 
                 <div className="flex flex-col items-center gap-2 sm:gap-3 relative z-10">
