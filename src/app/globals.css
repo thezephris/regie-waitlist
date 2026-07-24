@@ -51,3 +51,14 @@ body {
   transition-duration: 500ms !important;
   transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 }
+
+@font-face {
+  font-family: 'Goks';
+  src: url('/fonts/goks.woff2') format('woff2'),
+       url('/fonts/goks.woff') format('woff'),
+       url('/fonts/goks.ttf') format('truetype'),
+       url('/fonts/goks.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

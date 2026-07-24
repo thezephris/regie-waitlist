@@ -30,10 +30,9 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const [spacing, setSpacing] = useState(0);
   const [offset, setOffset] = useState(0);
   const uid = useId();
-  // Kavis yolu (path) ekranın çok sağından ve çok solundan başlayıp bitecek şekilde devasa yapıldı.
-  // Bu sayede büyük ekranlarda yazının aniden yok olması (ışınlanma) önlendi.
+  // Kavis yolu sağdan soldan yukarı doğru (U şeklinde)
   const pathId = `curve-${uid.replace(/:/g, "")}`;
-  const pathD = `M-1000,40 Q1500,${40 + curveAmount} 4000,40`;
+  const pathD = `M-500,-50 Q1500,${curveAmount} 3500,-50`;
 
   const dragRef = useRef(false);
   const lastXRef = useRef(0);
