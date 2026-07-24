@@ -31,7 +31,7 @@ export default function Home() {
   const isDark = resolvedTheme === "dark";
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [waitlistCount, setWaitlistCount] = useState(1532);
 
   useEffect(() => {
@@ -49,11 +49,11 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
-      setError(true);
-      setTimeout(() => setError(false), 3500);
+      setError("Lütfen geçerli bir e-posta adresi girin.");
+      setTimeout(() => setError(null), 3500);
       return;
     }
-    setError(false);
+    setError(null);
     setStatus("loading");
     
     try {
@@ -62,9 +62,10 @@ export default function Home() {
         createdAt: serverTimestamp()
       });
       setStatus("success");
-    } catch (error) {
-      console.error("Error saving email:", error);
-      setError(true);
+    } catch (err) {
+      console.error("Error saving email:", err);
+      setError("Sunucu hatası: Firestore kurallarını veya bağlantını kontrol et.");
+      setTimeout(() => setError(null), 3500);
       setStatus("idle");
     }
   };
@@ -135,16 +136,16 @@ export default function Home() {
             <div className="w-full max-w-lg flex flex-col items-center px-4 mt-[2vh]">
               <motion.form 
                 onSubmit={handleSubmit}
-                animate={error ? { x: [-8, 8, -8, 8, 0] } : {}}
+                animate={error !== null ? { x: [-8, 8, -8, 8, 0] } : {}}
                 transition={{ duration: 0.4 }}
-                className={`relative flex items-center w-full bg-card rounded-full shadow-xl shadow-black/30 dark:shadow-white/20 border p-1 focus-within:shadow-2xl focus-within:shadow-black/50 dark:focus-within:shadow-white/30 transition-all duration-500 ease-out ${error ? 'border-red-500/50' : 'border-border'}`}
+                className={`relative flex items-center w-full bg-card rounded-full shadow-xl shadow-black/30 dark:shadow-white/20 border p-1 focus-within:shadow-2xl focus-within:shadow-black/50 dark:focus-within:shadow-white/30 transition-all duration-500 ease-out ${error !== null ? 'border-red-500/50' : 'border-border'}`}
               >
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => {
                       setEmail(e.target.value);
-                      if(error) setError(false);
+                      if(error !== null) setError(null);
                   }}
                   placeholder="E-posta adresiniz"
                   disabled={status !== "idle"}
@@ -201,16 +202,16 @@ export default function Home() {
               {/* Error Message */}
               <div className="h-5 mt-[1vh] w-full flex justify-center">
                 <AnimatePresence>
-                    {error && (
+                    {error !== null && (
                         <motion.div 
                             initial={{ opacity: 0, y: -5 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -5 }}
-                            className="text-red-500 font-medium flex items-center gap-1.5 bg-red-50 dark:bg-red-950/30 px-3 py-0.5 rounded-full border border-red-200 dark:border-red-900/50"
+                            className="text-red-500 font-medium flex items-center gap-1.5 bg-red-50 dark:bg-red-950/30 px-3 py-0.5 rounded-full border border-red-200 dark:border-red-900/50 whitespace-nowrap"
                             style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.875rem)' }}
                         >
-                            <AlertCircle className="w-3 h-3" />
-                            Lütfen geçerli bir e-posta adresi girin.
+                            <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                            {error}
                         </motion.div>
                     )}
                 </AnimatePresence>
