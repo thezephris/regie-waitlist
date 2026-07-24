@@ -234,7 +234,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 w-full mt-[3vh] sm:mt-[4vh]">
               
               {/* Card 1 */}
-              <div className="group relative w-full rounded-[2rem] bg-gradient-to-b from-card/80 to-muted/20 backdrop-blur-xl border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1.5 z-10">
+              <div className="group relative w-full rounded-[2rem] bg-card border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1.5 z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
                 <div className="relative flex flex-col p-6 sm:p-7 h-full">
                   <div className="flex items-center justify-between mb-8 sm:mb-10">
@@ -255,7 +255,7 @@ export default function Home() {
               </div>
 
               {/* Card 2 */}
-              <div className="group relative w-full rounded-[2rem] bg-gradient-to-b from-card/80 to-muted/20 backdrop-blur-xl border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1.5 z-10">
+              <div className="group relative w-full rounded-[2rem] bg-card border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1.5 z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
                 <div className="relative flex flex-col p-6 sm:p-7 h-full">
                   <div className="flex items-center justify-between mb-8 sm:mb-10">
@@ -276,7 +276,7 @@ export default function Home() {
               </div>
 
               {/* Card 3 */}
-              <div className="group relative w-full rounded-[2rem] bg-gradient-to-b from-card/80 to-muted/20 backdrop-blur-xl border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1.5 z-10">
+              <div className="group relative w-full rounded-[2rem] bg-card border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1.5 z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
                 <div className="relative flex flex-col p-6 sm:p-7 h-full">
                   <div className="flex items-center justify-between mb-8 sm:mb-10">
