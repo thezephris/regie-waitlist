@@ -71,8 +71,8 @@ export default function Home() {
 
   return (
     <ClickSpark sparkColor="var(--foreground)" sparkSize={12} sparkRadius={20} sparkCount={8} duration={400}>
-      {/* Strictly Fixed Layout to fit exactly on screen */}
-      <main className="fixed inset-0 w-full h-[100dvh] flex flex-col items-center justify-between px-4 sm:px-6 py-[2vh] overflow-hidden selection:bg-primary/20">
+      {/* Responsive Layout that scrolls on overflow */}
+      <main className="relative w-full min-h-[100dvh] flex flex-col items-center justify-between px-4 sm:px-6 py-[4vh] sm:py-[2vh] overflow-x-hidden selection:bg-primary/20">
         
         {/* Dot Field Background */}
         <div className="absolute inset-0 pointer-events-none z-0 opacity-100 transition-opacity duration-500">
