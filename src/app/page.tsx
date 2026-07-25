@@ -32,11 +32,25 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "already_registered">("idle");
   const [error, setError] = useState<string | null>(null);
-  const [waitlistCount, setWaitlistCount] = useState(154);
+  const [waitlistCount, setWaitlistCount] = useState(0);
 
   useEffect(() => {
-    // Statik değer
-    setWaitlistCount(154);
+    const fetchCount = async () => {
+      try {
+        const response = await fetch('/api/waitlist/count');
+        if (response.ok) {
+          const data = await response.json();
+          setWaitlistCount(data.count);
+        } else {
+          console.error("API'den sayı alınırken hata oluştu:", response.status);
+        }
+      } catch (err) {
+        console.error("Firebase'den sayı okunurken ağ hatası alındı:", err);
+        // Fallback YOK. Gerçek sayı okunana kadar 0 kalacak.
+      }
+    };
+
+    fetchCount();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -55,6 +69,7 @@ export default function Home() {
         email: docId,
         createdAt: serverTimestamp()
       });
+      setWaitlistCount(prev => prev + 1);
       setStatus("success");
     } catch (err: any) {
       console.error("Error saving email:", err);
@@ -241,7 +256,7 @@ export default function Home() {
                 <div className="rounded-full bg-card border-2 border-background overflow-hidden shadow-lg shadow-black/40 dark:shadow-white/20 flex items-center justify-center font-bold text-muted-foreground" style={{ width: 'clamp(1.75rem, 4vh, 2.5rem)', height: 'clamp(1.75rem, 4vh, 2.5rem)', marginLeft: 'calc(clamp(1.75rem, 4vh, 2.5rem) * -0.4)', fontSize: 'clamp(0.6rem, 1.2vh, 0.8rem)' }}>+</div>
               </div>
               <span className="text-muted-foreground font-medium" style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.85rem)' }}>
-                <Counter from={214} to={waitlistCount} /> yayıncı tarafından bekleniyor
+                <Counter from={0} to={waitlistCount} /> yayıncı tarafından bekleniyor
               </span>
             </div>
 
@@ -388,7 +403,7 @@ export default function Home() {
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-muted border-2 border-card overflow-hidden shadow-sm"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=4" alt="avatar" /></div>
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-muted border-2 border-card overflow-hidden shadow-sm"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=5" alt="avatar" /></div>
                   </div>
-                  <span className="text-muted-foreground font-medium mt-1" style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.75rem)' }}>You&apos;re not alone, <span className="text-[#16a34a] font-bold">150+</span> people joined!</span>
+                  <span className="text-muted-foreground font-medium mt-1" style={{ fontSize: 'clamp(0.65rem, 1.5vh, 0.75rem)' }}>You&apos;re not alone, <span className="text-[#16a34a] font-bold">{waitlistCount}</span> people joined!</span>
                 </div>
               </motion.div>
             </motion.div>
