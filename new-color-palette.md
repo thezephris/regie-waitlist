@@ -24,9 +24,9 @@ Regie'nin ana karakteri. Tıklanabilir öğeler, başarı durumları, platformun
 
 | Semantic Token | Hex | Kullanım Alanı |
 |----------------|-----|----------------|
-| `color.action.primary` | `#22FF66` | (Neon Green) Ana CTA butonları, aktif sekmeler, Logo. |
-| `color.action.hover` | `#4DFF8C` | Buton hover durumları. |
-| `color.action.muted` | `#096228` | Transparan yeşil arka planlar. |
+| `color.action.primary` | `#69DC9E` | (Neon Green) Ana CTA butonları, aktif sekmeler, Logo. |
+| `color.action.hover` | `#8BE4B6` | Buton hover durumları. |
+| `color.action.muted` | `#163A26` | Transparan yeşil arka planlar. |
 
 ### 3. Artificial Intelligence (The Intelligence Layer)
 Sadece AI özelliklerinde kullanıcıya "burada yapay zeka çalışıyor" hissini vermek için. Regie'nin yönetmen zekası.
@@ -198,14 +198,14 @@ Animasyon ve geçiş süreleri.
 Input veya butonlar Tab ile veya fare ile seçildiğinde görünmesi gereken Focus çerçevesi.
 ```css
 /* opacity.40 kullanılarak */
-box-shadow: 0 0 0 2px rgba(34, 255, 102, var(--opacity-40));
+box-shadow: 0 0 0 2px rgba(105, 220, 158, var(--opacity-40));
 ```
 
 ### Selection Color (Metin Seçimi)
 Kullanıcı metni fare ile taradığında Premium hissi vermek için.
 ```css
 ::selection {
-  background-color: rgba(34, 255, 102, 0.18);
+  background-color: rgba(105, 220, 158, 0.18);
   color: #FAFAFA;
 }
 ```
@@ -228,7 +228,7 @@ Kullanıcı metni fare ile taradığında Premium hissi vermek için.
 
 **Brand Gradient** (Hero alanları için çok premium görünüm):
 ```css
-background: linear-gradient(135deg, #22FF66 0%, #4DFF8C 100%);
+background: linear-gradient(135deg, #69DC9E 0%, #50B37B 100%);
 ```
 
 **AI Gradient** (Sihir efektini çok daha canlı ve dinamik gösteren geçiş):
@@ -251,5 +251,5 @@ Sadece gerçekten dikkat çekmesi gereken yerlerde:
 box-shadow: 0 0 16px rgba(255, 45, 85, var(--opacity-40));
 
 /* Brand Button Glow (shadow.glow.brand) */
-box-shadow: 0 0 20px rgba(34, 255, 102, var(--opacity-24));
+box-shadow: 0 0 20px rgba(105, 220, 158, var(--opacity-24));
 ```

@@ -114,10 +114,10 @@ export default function Home() {
         {/* 1. TOP NAV */}
         <div className="w-full flex justify-center flex-shrink-0 mt-[1vh] relative z-10" style={{ minHeight: 'clamp(2.5rem, 5vh, 4rem)' }}>
           <div className="flex items-center justify-between bg-card px-4 py-[1vh] rounded-full shadow-lg shadow-black/20 dark:shadow-white/10 border border-border w-full max-w-[280px] sm:max-w-[320px] h-full">
-            {/* Left: Icon Logo */}
-            <div className="relative w-8 h-5 flex flex-shrink-0 items-center justify-start">
-               <Image src="/regie-black.png" alt="Regie" fill className="object-contain object-left dark:opacity-0 opacity-100 transition-opacity duration-500 ease-out" />
-               <Image src="/regie-white.png" alt="Regie" fill className="object-contain object-left opacity-0 dark:opacity-100 absolute inset-0 transition-opacity duration-500 ease-out" />
+            {/* Left: Logo */}
+            <div className="relative w-14 h-6 sm:w-16 sm:h-8 flex flex-shrink-0 items-center justify-start">
+               <Image src="/RegieLogoBlack.png" alt="Regie Logo" fill className="object-contain object-left dark:opacity-0 opacity-100 transition-opacity duration-500 ease-out" priority />
+               <Image src="/RegieLogoWhite.png" alt="Regie Logo" fill className="object-contain object-left opacity-0 dark:opacity-100 absolute inset-0 transition-opacity duration-500 ease-out" priority />
             </div>
 
             {/* Center: Text Logo */}
@@ -126,12 +126,12 @@ export default function Home() {
                 className="text-foreground tracking-tighter"
                 style={{ fontFamily: "'Goks', Impact, sans-serif", fontSize: 'clamp(1.5rem, 2.5vh, 2rem)', lineHeight: 1, paddingBottom: '2px' }}
               >
-                regie<span className="text-[#22FF66]">.</span>
+                regie<span className="text-primary">.</span>
               </span>
             </div>
 
             {/* Right: Theme Toggler */}
-            <div className="flex-shrink-0">
+            <div className="flex items-center justify-end w-14 sm:w-16 flex-shrink-0">
               <AnimatedThemeToggler />
             </div>
           </div>
@@ -184,7 +184,7 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={status !== "idle"}
-                  className="relative overflow-hidden group bg-primary text-primary-foreground px-[2vw] sm:px-6 h-full rounded-full font-semibold flex items-center justify-center min-w-[100px] sm:min-w-[130px] border-2 border-transparent hover:bg-transparent hover:text-foreground hover:border-primary disabled:opacity-80 disabled:pointer-events-none transition-all duration-500 ease-out shadow-md hover:shadow-lg"
+                  className="relative overflow-hidden group bg-primary text-primary-foreground px-[2vw] sm:px-6 h-full rounded-full font-semibold flex items-center justify-center min-w-[100px] sm:min-w-[130px] border-2 border-transparent hover:bg-transparent hover:text-foreground hover:border-primary disabled:opacity-80 disabled:pointer-events-none transition-all duration-500 ease-out shadow-[0_0_20px_rgba(105,220,158,0.24)] hover:shadow-[0_0_24px_rgba(105,220,158,0.4)]"
                   style={{ fontSize: 'clamp(0.75rem, 1.5vh, 0.9rem)' }}
                 >
                   {/* Status Transitions */}
@@ -264,7 +264,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-3 w-full pointer-events-auto" style={{ gap: 'clamp(0.5rem, 2vh, 1.5rem)', marginTop: 'clamp(1rem, 3vh, 3rem)' }}>
               
               {/* Card 1 */}
-              <div className="group relative w-full rounded-[clamp(1rem,3vh,2rem)] bg-card border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1 z-10 flex flex-col justify-between" style={{ padding: 'clamp(1rem, 2.5vh, 1.5rem)' }}>
+              <div className="group relative w-full rounded-[clamp(1rem,3vh,2rem)] bg-card border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-[0_0_30px_rgba(105,220,158,0.15)] hover:-translate-y-1 z-10 flex flex-col justify-between" style={{ padding: 'clamp(1rem, 2.5vh, 1.5rem)' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
                 <div className="relative flex flex-col h-full">
                   <div className="flex items-center justify-between" style={{ marginBottom: 'clamp(1rem, 2.5vh, 2rem)' }}>
@@ -285,17 +285,17 @@ export default function Home() {
               </div>
 
               {/* Card 2 */}
-              <div className="group relative w-full rounded-[clamp(1rem,3vh,2rem)] bg-card border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1 z-10 flex flex-col justify-between" style={{ padding: 'clamp(1rem, 2.5vh, 1.5rem)' }}>
+              <div className="group relative w-full rounded-[clamp(1rem,3vh,2rem)] bg-card border border-border/60 hover:border-ai-accent/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] hover:-translate-y-1 z-10 flex flex-col justify-between" style={{ padding: 'clamp(1rem, 2.5vh, 1.5rem)' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
                 <div className="relative flex flex-col h-full">
                   <div className="flex items-center justify-between" style={{ marginBottom: 'clamp(1rem, 2.5vh, 2rem)' }}>
                     <div className="flex items-center justify-center rounded-[clamp(0.75rem,2vh,1rem)] bg-card border border-border shadow-[0_5px_15px_-3px_rgba(0,0,0,0.1)] dark:shadow-[0_5px_15px_-3px_rgba(255,255,255,0.05)] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]" style={{ width: 'clamp(2.5rem, 6vh, 3.5rem)', height: 'clamp(2.5rem, 6vh, 3.5rem)' }}>
-                      <ShieldAlert className="text-foreground/80 group-hover:text-primary transition-colors duration-500" style={{ width: 'clamp(1.25rem, 3vh, 1.75rem)', height: 'clamp(1.25rem, 3vh, 1.75rem)' }} />
+                      <ShieldAlert className="text-foreground/80 group-hover:text-ai-accent transition-colors duration-500" style={{ width: 'clamp(1.25rem, 3vh, 1.75rem)', height: 'clamp(1.25rem, 3vh, 1.75rem)' }} />
                     </div>
-                    <div className="w-8 h-1 rounded-full bg-border/50 group-hover:bg-primary/20 transition-colors duration-500" />
+                    <div className="w-8 h-1 rounded-full bg-border/50 group-hover:bg-ai-accent/30 transition-colors duration-500" />
                   </div>
                   <div className="mt-auto text-left">
-                    <h3 className="font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-500" style={{ fontSize: 'clamp(0.9rem, 2vh, 1.25rem)', marginBottom: 'clamp(0.25rem, 1vh, 0.75rem)' }}>
+                    <h3 className="font-bold text-foreground tracking-tight group-hover:text-ai-accent transition-colors duration-500" style={{ fontSize: 'clamp(0.9rem, 2vh, 1.25rem)', marginBottom: 'clamp(0.25rem, 1vh, 0.75rem)' }}>
                       Yapay Zeka Kalkanı
                     </h3>
                     <p className="text-muted-foreground leading-snug" style={{ fontSize: 'clamp(0.7rem, 1.6vh, 0.95rem)' }}>
@@ -306,7 +306,7 @@ export default function Home() {
               </div>
 
               {/* Card 3 */}
-              <div className="group relative w-full rounded-[clamp(1rem,3vh,2rem)] bg-card border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-white/20 hover:-translate-y-1 z-10 flex flex-col justify-between" style={{ padding: 'clamp(1rem, 2.5vh, 1.5rem)' }}>
+              <div className="group relative w-full rounded-[clamp(1rem,3vh,2rem)] bg-card border border-border/60 hover:border-primary/40 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-xl shadow-black/20 dark:shadow-white/5 hover:shadow-2xl hover:shadow-black/40 dark:hover:shadow-[0_0_30px_rgba(105,220,158,0.15)] hover:-translate-y-1 z-10 flex flex-col justify-between" style={{ padding: 'clamp(1rem, 2.5vh, 1.5rem)' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
                 <div className="relative flex flex-col h-full">
                   <div className="flex items-center justify-between" style={{ marginBottom: 'clamp(1rem, 2.5vh, 2rem)' }}>

@@ -11,18 +11,34 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-ai-accent: var(--ai-accent);
+  --color-ai-glow: var(--ai-glow);
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border-hover: var(--border-hover);
   --font-sans: var(--font-geist-sans);
 }
 
 :root {
   --background: #fafafa;
-  --foreground: #111111;
+  --foreground: #09090b;
   --card: #ffffff;
-  --border: #f3f4f6;
-  --primary: #1a1a1a;
-  --primary-foreground: #ffffff;
+  --border: #e4e4e7;
+  --primary: #69DC9E;
+  --primary-foreground: #09090b;
   --muted: #f4f4f5;
   --muted-foreground: #71717a;
+  
+  /* Semantic Tokens */
+  --ai-accent: #8B5CF6;
+  --ai-glow: #A855F7;
+  --surface-0: #fafafa;
+  --surface-1: #ffffff;
+  --surface-2: #f4f4f5;
+  --surface-3: #e4e4e7;
+  --border-hover: #d4d4d8;
 }
 
 .dark {
@@ -30,16 +46,46 @@
   --foreground: #fafafa;
   --card: #121215;
   --border: #27272a;
-  --primary: #ffffff;
+  --primary: #69DC9E;
   --primary-foreground: #09090b;
   --muted: #18181b;
   --muted-foreground: #a1a1aa;
+  
+  /* Semantic Tokens */
+  --ai-accent: #8B5CF6;
+  --ai-glow: #A855F7;
+  --surface-0: #09090B;
+  --surface-1: #121215;
+  --surface-2: #18181B;
+  --surface-3: #232326;
+  --border-hover: #3F3F46;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+/* Premium Selection Color */
+::selection {
+  background-color: rgba(105, 220, 158, 0.18);
+  color: #FAFAFA;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-1);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
 }
 
 /* Theme transition sync class (applied dynamically via JS) */
